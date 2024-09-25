@@ -1,0 +1,41 @@
+<div class="landing-page">
+    <h1>Welcome to Your Garden</h1>
+    <div class="statistics">
+        <h2>Statistics</h2>
+        <p>Decorated Gardens: {{ completedGardens }}</p>
+        <p>Total Owners: {{ totalOwners }}</p>
+        <p>Total Decorators: {{ totalDecorators }}</p>
+        <p>Appointments in the last 24 hours: {{ appointments.last24Hours }}</p>
+        <p>Appointments in the last 7 days: {{ appointments.last7Days }}</p>
+        <p>Appointments in the last 30 days: {{ appointments.last30Days }}</p>
+    </div>
+
+    <div class="firms">
+        <h2>Firms</h2>
+        <input type="text" placeholder="Search by name" [(ngModel)]="searchName" class="bound-input-box">
+        <input type="text" placeholder="Search by address" [(ngModel)]="searchAddress" class="bound-input-box">
+        <button (click)="searchFirms()">Search</button>
+
+        <table>
+            <thead>
+                <tr>
+                    <th (click)="sort('name')">Name</th>
+                    <th (click)="sort('address')">Address</th>
+                    <th>Decorators</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let firm of firms">
+                    <td>{{ firm.name }}</td>
+                    <td>{{ firm.address }}</td>
+                    <td>
+                        <ul>
+                            <li *ngFor="let decorator of firm.decorators">{{ decorator.firstName }} {{
+                                decorator.lastName }}</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

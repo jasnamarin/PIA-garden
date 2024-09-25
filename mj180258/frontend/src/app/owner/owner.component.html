@@ -1,0 +1,69 @@
+<div class="owner-main">
+    <!-- Main navigation menu -->
+    <nav>
+        <ul class="menu">
+            <li (click)="selectMenu('profile')" [class.active]="selectedMenu === 'profile'">Profile</li>
+            <li (click)="selectMenu('firms')" [class.active]="selectedMenu === 'firms'">Firms</li>
+            <li (click)="selectMenu('appointments')" [class.active]="selectedMenu === 'appointments'">Appointments</li>
+            <li (click)="selectMenu('maintenance')" [class.active]="selectedMenu === 'maintenance'">Maintenance</li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <!-- Conditionally display content based on the selected menu item -->
+        <div *ngIf="selectedMenu === 'profile'" class="profile-container">
+            <h2>Your Profile</h2>
+
+            <!-- Profile Picture -->
+            <div class="profile-picture">
+                <img *ngIf="owner.profilePicture" [src]="owner.profilePicture" alt="Profile Picture"
+                    style="width: 150px; border-radius: 50%;" />
+            </div>
+
+            <!-- User Details -->
+            <div class="profile-details">
+                <p><strong>First Name:</strong> {{ owner.firstName }}</p>
+                <p><strong>Last Name:</strong> {{ owner.lastName }}</p>
+                <p><strong>Email:</strong> {{ owner.email }}</p>
+                <p><strong>Phone:</strong> {{ owner.phone }}</p>
+                <p><strong>Address:</strong> {{ owner.address }}</p>
+                <p><strong>Credit Card:</strong> {{ owner.creditCard }}</p>
+            </div>
+
+            <!-- Edit Profile Button -->
+            <button (click)="enableEditing()">Edit Profile</button>
+
+            <!-- Editable Fields when editing is enabled -->
+            <div *ngIf="isEditing" class="bound-input-box">
+                <input type="text" [(ngModel)]="owner.firstName" placeholder="First Name" /> <br>
+                <input type="text" [(ngModel)]="owner.lastName" placeholder="Last Name" />
+                <input type="email" [(ngModel)]="owner.email" placeholder="Email" />
+                <input type="tel" [(ngModel)]="owner.phone" placeholder="Phone" />
+                <input type="text" [(ngModel)]="owner.address" placeholder="Address" />
+                <input type="text" [(ngModel)]="owner.creditCard" (ngModelChange)="owner.creditCard 
+                    ? validateCreditCard(owner.creditCard)
+                    : null" placeholder="Credit Card Number" />
+                <!-- Display the credit card icon when a valid card is entered -->
+                <img class="small-image" *ngIf="creditCardIcon" [src]="creditCardIcon" alt="Credit Card Icon" /> <br>
+                <input type="file" style="width: 300px;" (change)="onFileSelected($event)" /> <br>
+                <span class="err">{{message}}</span> <br>
+                <button (click)="updateUser(owner)">Save Changes</button>
+            </div>
+        </div>
+
+        <div *ngIf="selectedMenu === 'firms'">
+            <h2>Firms</h2>
+            <!-- Firms content will go here -->
+        </div>
+
+        <div *ngIf="selectedMenu === 'appointments'">
+            <h2>Appointments</h2>
+            <!-- Appointments content will go here -->
+        </div>
+
+        <div *ngIf="selectedMenu === 'maintenance'">
+            <h2>Maintenance</h2>
+            <!-- Maintenance content will go here -->
+        </div>
+    </div>
+</div>

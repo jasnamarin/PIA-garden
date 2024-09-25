@@ -1,0 +1,312 @@
+/* Global text styling */
+h1,
+h2,
+h3 {
+    color: #ceede2;
+    /* Deep blue-green */
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 10px;
+}
+
+.info {
+    font-family: 'Roboto', sans-serif;
+    color: #393f40;
+}
+
+label {
+    color: #98d1bd;
+    /* Deep blue-green */
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 10px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0fbfb;
+    /* Light blue-green background */
+    background-image: url('/assets/bcg.avif');
+    color: #333;
+}
+
+/* Form container styling */
+form {
+    width: 100%;
+    max-width: 500px;
+    min-width: 380px;
+    padding: 20px;
+    margin: 20px auto;
+
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #98d1bd;
+    /* Light green-blue border */
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+input {
+    width: 100%;
+    /* Make sure all input fields take up the full container width */
+    margin: 8px 0;
+    padding: 10px;
+    border: 1px solid #98d1bd;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    /* Ensure padding is included in width calculation */
+}
+
+button {
+    margin: 8px 0;
+    padding: 10px;
+    border: 1px solid #98d1bd;
+    /* Light green-blue border */
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Input focus effect */
+input:focus {
+    border-color: #2c7a7b;
+    /* Blue-green highlight */
+    outline: none;
+    box-shadow: 0 0 5px rgba(44, 122, 123, 0.5);
+}
+
+/* Button styling */
+button {
+    background-color: #2c7a7b;
+    /* Blue-green */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1f5d5e;
+    /* Darker blue-green */
+}
+
+/* Error text styling */
+.err {
+    color: #c53030;
+    /* Red error */
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Flexbox container for lists */
+.flexbox-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul:not(.menu) li {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 600px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Flexbox row for buttons */
+li button {
+    margin-left: 10px;
+}
+
+h3 {
+    border-bottom: 2px solid #2c7a7b;
+    padding-bottom: 5px;
+}
+
+/* Header with background image */
+header {
+    background-image: url('/assets/header_bcg.avif');
+    background-size: cover;
+    background-position: center;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+header h1 {
+    font-size: 48px;
+    text-align: center;
+}
+
+/* Styling for the custom multi-select dropdown */
+.custom-multiselect {
+    position: relative;
+    border: 1px solid #98d1bd;
+    /* Light green-blue border */
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #f0fbfb;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.selected-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    color: #333;
+}
+
+.selected-options span {
+    background-color: #2c7a7b;
+    /* Blue-green for selected options */
+    color: white;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.dropdown-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid #98d1bd;
+    border-radius: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-option {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.dropdown-option:hover {
+    background-color: #f0fbfb;
+}
+
+.dropdown-option .selected {
+    background-color: #2c7a7b;
+    /* Highlight selected options */
+    color: white;
+    border-radius: 3px;
+}
+
+.small-input {
+    width: 38%;
+    margin: 8px 2px;
+    padding: 10px;
+    border: 1px solid #98d1bd;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    /* Ensure padding is included in width calculation */
+}
+
+.bound-input-box {
+    width: 300px;
+}
+
+.small-button {
+    width: 18%;
+    margin: 8px 2px;
+    padding: 10px;
+    border: 1px solid #98d1bd;
+    /* Light green-blue border */
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Styles for navigation menu (Owner & Decorator) */
+
+/* Updated navigation menu styles */
+.owner-main nav,
+.decorator-main nav {
+    margin-bottom: 20px;
+}
+
+ul.menu {
+    background-image: url('/assets/header_bcg.avif');
+    background-size: cover;
+    background-position: center;
+    height: 50px;
+    list-style-type: none;
+    display: flex;
+    /* Display the menu items horizontally */
+    justify-content: flex-start;
+    padding-top: 50px;
+    padding-left: 15px;
+    padding-bottom: 0;
+    margin: 0;
+}
+
+ul.menu li {
+    cursor: pointer;
+    padding: 12px 20px;
+    margin-right: 10px;
+    background-color: #487170;
+    /* Darker background */
+    color: white;
+    border-radius: 5px 5px 0 0;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    border-bottom: 2px solid transparent;
+}
+
+ul.menu li:hover {
+    background-color: #98d1bd;
+    /* Slightly lighter when hovered */
+}
+
+ul.menu li.active {
+    background-color: #1f5d5e;
+    /* Dark blue-green for the active tab */
+    color: white;
+    border-bottom: 2px solid #fff;
+    /* Active tab has a white underline */
+}
+
+ul.menu li:not(.active) {
+    border-bottom: 2px solid transparent;
+    /* Invisible bottom border for non-active tabs */
+}
+
+/* Ensure the content area stays below the tabs */
+.content {
+    padding: 20px;
+}
+
+/* Ensure profile images are styled nicely */
+img {
+    max-width: 150px;
+    margin-top: 15px;
+    border-radius: 50%;
+}
+
+.small-image {
+    width: 18%;
+    border-radius: 0;
+}

@@ -1,0 +1,261 @@
+<header>
+  <h1>Welcome to Your Imagination – Your Garden</h1>
+</header>
+
+<div class="flexbox-container">
+  <h2>Admin Dashboard</h2>
+
+  <!-- Pending Owner Registration Requests -->
+  <div>
+    <h3>Pending Owner Registration Requests</h3>
+    <div class="info" *ngIf="pendingOwners.length > 0">
+      <ul>
+        <li *ngFor="let owner of pendingOwners">
+          {{ owner.firstName }} {{ owner.lastName }} - {{ owner.email }}
+          <br> Username: {{ owner.username }}
+          <br> Address: {{ owner.address }}
+          <br> Phone Number: {{ owner.phone }}
+          <br> Credit Card: {{ owner.creditCard }}
+          <br>
+
+          <button (click)="acceptOwner(owner._id)">Accept</button>
+          <button (click)="declineOwner(owner._id)">Decline</button>
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="pendingOwners.length === 0">
+      <p>No pending requests.</p>
+    </div>
+  </div>
+
+  <div>
+    <h3>Add New Decorator</h3>
+
+    <!-- Decorator Form -->
+    <form (ngSubmit)="addNewDecorator()">
+      <label for="username">Username</label>
+      <input id="username" type="text" placeholder="Username" [(ngModel)]="newDecorator.username" name="username"
+        required />
+
+      <label for="password">Password</label>
+      <input id="password" type="password" placeholder="Password" [(ngModel)]="newDecorator.password" name="password"
+        required />
+
+      <label for="firstName">First Name</label>
+      <input id="firstName" type="text" placeholder="First Name" [(ngModel)]="newDecorator.firstName" name="firstName"
+        required />
+
+      <label for="lastName">Last Name</label>
+      <input id="lastName" type="text" placeholder="Last Name" [(ngModel)]="newDecorator.lastName" name="lastName"
+        required />
+
+      <label for="gender">Gender</label>
+      <select id="gender" [(ngModel)]="newDecorator.gender" name="gender" required>
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+      </select>
+
+      <label for="address">Address</label>
+      <input id="address" type="text" placeholder="Address" [(ngModel)]="newDecorator.address" name="address"
+        required />
+
+      <label for="phone">Phone</label>
+      <input id="phone" type="tel" placeholder="Phone Number" [(ngModel)]="newDecorator.phone" name="phone" required />
+
+      <label for="email">Email</label>
+      <input id="email" type="email" placeholder="Email" [(ngModel)]="newDecorator.email" name="email" required />
+
+      <button type="submit">Add Decorator</button>
+
+      <!-- Error message -->
+      <p class="err" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+    </form>
+  </div>
+
+  <div>
+    <h3>Add New Firm</h3>
+
+    <form (ngSubmit)="addNewFirm()" #firmForm="ngForm">
+      <!-- Firm Name -->
+      <input placeholder="Firm Name" [(ngModel)]="newFirm.name" name="firmName" required />
+
+      <!-- Address -->
+      <input placeholder="Address" [(ngModel)]="newFirm.address" name="firmAddress" required />
+
+      <!-- Phone -->
+      <input placeholder="Phone" [(ngModel)]="newFirm.phone" name="firmPhone" required />
+
+      <!-- Location (on a map) -->
+      <input placeholder="Location" [(ngModel)]="newFirm.location" name="firmLocation" required />
+
+      <!-- Add Services Section -->
+      <div>
+        <h4>Add Services</h4>
+
+        <div *ngFor="let service of newFirm.services; let i = index">
+          <!-- Service Name Input -->
+          <input class="small-input" placeholder="Service Name" [(ngModel)]="service.serviceName"
+            name="serviceName-{{i}}" required />
+
+          <!-- Service Price Input -->
+          <input class="small-input" placeholder="Price" type="number" [(ngModel)]="service.price"
+            name="servicePrice-{{i}}" required />
+
+          <!-- Remove Service Button -->
+          <button class="small-button" type="button" (click)="removeService(i)">Remove</button>
+        </div>
+
+        <!-- Add Service Button -->
+        <button type="button" (click)="addService()">&nbsp;+&nbsp;</button>
+      </div>
+
+      <!-- Holiday Period -->
+      <div>
+        <h4>Holiday Period</h4>
+        <input placeholder="Holiday Period (e.g., July 1 - July 31)" [(ngModel)]="newFirm.holidayPeriod"
+          name="firmHolidayPeriod" required />
+      </div>
+
+      <!-- Decorators -->
+      <div>
+        <h4>Assign Decorators</h4>
+
+        <!-- Custom Dropdown -->
+        <div class="custom-multiselect" (click)="toggleDropdown()">
+          <div class="selected-options">
+            <!-- Display selected decorators or placeholder -->
+            <span *ngIf="newFirm.decorators.length === 0">Select decorators...</span>
+            <div *ngFor="let decorator of decorators">
+              <span *ngIf="isDecoratorSelected(decorator._id)">
+                {{ decorator.firstName }} {{ decorator.lastName }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Dropdown Options (Clickable) -->
+          <div class="dropdown-options" *ngIf="dropdownOpen">
+            <div *ngFor="let decorator of decorators" class="dropdown-option"
+              (click)="selectDecorator(decorator._id, $event)">
+              <span [class.selected]="isDecoratorSelected(decorator._id)">
+                {{ decorator.firstName }} {{ decorator.lastName }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <p *ngIf="newFirm.decorators.length < 2" class="err">
+          Please select at least 2 decorators.
+        </p>
+      </div>
+
+
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="newFirm.decorators.length < 2">Add Firm</button>
+
+      <!-- Error message -->
+      <p class="err" *ngIf="firmErrorMessage">{{ firmErrorMessage }}</p>
+    </form>
+  </div>
+
+  <!-- TODO: turn this into editable table -->
+  <!-- All fields can be edited and updated together in one request:
+    export interface Firm {
+      _id: string;
+      name: string;
+      address: string;
+      phone: string;
+      services: {
+        // Instead of defining a new interface for services:
+        serviceName: string;
+        price: number;
+      }[];
+      location: string;
+      holidayPeriod: string;
+      decorators: string[]; // Array of decorator ObjectIds
+    } -->
+
+  <!-- Owners Table -->
+  <div>
+    <h3>Owners</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Address</th>
+          <th>Status</th>
+          <th>Credit Card</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let owner of owners">
+          <!-- Editable fields for owners -->
+          <td><input [(ngModel)]="owner.firstName" /></td>
+          <td><input [(ngModel)]="owner.lastName" /></td>
+          <td><input [(ngModel)]="owner.email" /></td>
+          <td><input [(ngModel)]="owner.phone" /></td>
+          <td><input [(ngModel)]="owner.address" /></td>
+          <td>
+            <select [(ngModel)]="owner.status">
+              <option value="pending">Pending</option>
+              <option value="accepted">Accepted</option>
+              <option value="declined">Declined</option>
+            </select>
+          </td>
+          <td><input [(ngModel)]="owner.creditCard" /></td>
+          <td><button (click)="updateUser(owner._id, owner)">Save Changes</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Decorators Table -->
+  <div>
+    <h3>Decorators</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Address</th>
+          <th>Firm</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let decorator of decorators">
+          <!-- Editable fields for decorators -->
+          <td><input [(ngModel)]="decorator.firstName" /></td>
+          <td><input [(ngModel)]="decorator.lastName" /></td>
+          <td><input [(ngModel)]="decorator.email" /></td>
+          <td><input [(ngModel)]="decorator.phone" /></td>
+          <td><input [(ngModel)]="decorator.address" /></td>
+          <td>
+            <select [(ngModel)]="decorator.firm">
+              <option *ngFor="let firm of firms" [value]="firm._id">{{ firm.name }}</option>
+            </select>
+          </td>
+          <td><button (click)="updateUser(decorator._id, decorator)">Save Changes</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- Firms List -->
+  <div>
+    <h3>Firms</h3>
+    <ul>
+      <li *ngFor="let firm of firms">
+        {{ firm.name }} {{ firm.address }} - {{ firm.phone }}
+      </li>
+    </ul>
+  </div>
+
+</div>

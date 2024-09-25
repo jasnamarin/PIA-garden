@@ -1,0 +1,55 @@
+<header>
+    <h1>Your Imagination – Your Garden</h1>
+</header>
+
+<div class="flexbox-container">
+    <h2>Sign Up</h2>
+    <form (ngSubmit)="signup()">
+        <h3>Personal Information</h3>
+
+        <label for="username">Username</label>
+        <input type="text" name="username" placeholder="username" [(ngModel)]="newOwner.username" required /><br>
+
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="password" [(ngModel)]="newOwner.password" required /><br>
+
+        <label for="firstname">First Name</label>
+        <input type="text" name="firstname" placeholder="first name" [(ngModel)]="newOwner.firstName" required /><br>
+
+        <label for="lastname">Last Name</label>
+        <input type="text" name="lastname" placeholder="last name" [(ngModel)]="newOwner.lastName" required /><br>
+
+        <label for="gender">Gender</label>
+        <select id="gender" name="gender" [(ngModel)]="newOwner.gender" required>
+            <option value="F">Female</option>
+            <option value="M">Male</option>
+        </select><br>
+
+        <h3>Contact Details</h3>
+
+        <label for="address">Address</label>
+        <input type="text" name="address" placeholder="address" [(ngModel)]="newOwner.address" required /><br>
+
+        <label for="phone">Phone Number</label>
+        <input type="text" name="phone" placeholder="phone number" [(ngModel)]="newOwner.phone" required /><br>
+
+        <label for="email">Email Address</label>
+        <input type="text" name="email" placeholder="email address" [(ngModel)]="newOwner.email" required /><br>
+
+        <!-- Credit Card Input Field and Icon -->
+        <label for="creditCard">Credit Card Number</label>
+        <input id="creditCard" type="text" placeholder="Credit Card Number" [(ngModel)]="newOwner.creditCard"
+            (ngModelChange)="newOwner.creditCard 
+            ? validateCreditCard(newOwner.creditCard)
+            : null" name="creditCard" />
+
+        <!-- Display the credit card icon when a valid card is entered -->
+        <img class="small-image" *ngIf="creditCardIcon" [src]="creditCardIcon" alt="Credit Card Icon" /> <br>
+
+        <label for="profilepicture">[Optional] Profile Picture</label><br>
+        <input type="file" name="profilepicture" (change)="onFileSelected($event)" /><br>
+
+        <button type="submit">Sign Up</button><br>
+        <span class="err">{{errorMessage}}</span>
+    </form><br>
+</div>

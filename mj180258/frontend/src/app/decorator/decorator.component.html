@@ -1,0 +1,63 @@
+<div class="decorator-main">
+    <!-- Main navigation menu -->
+    <nav>
+        <ul class="menu">
+            <li (click)="selectMenu('profile')" [class.active]="selectedMenu === 'profile'">Profile</li>
+            <li (click)="selectMenu('appointments')" [class.active]="selectedMenu === 'appointments'">Appointments</li>
+            <li (click)="selectMenu('maintenance')" [class.active]="selectedMenu === 'maintenance'">Maintenance</li>
+            <li (click)="selectMenu('statistics')" [class.active]="selectedMenu === 'statistics'">Statistics</li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <!-- Conditionally display content based on the selected menu item -->
+        <div *ngIf="selectedMenu === 'profile'" class="profile-container">
+            <h2>Your Profile</h2>
+
+            <!-- Profile Picture -->
+            <div class="profile-picture">
+                <img *ngIf="decorator.profilePicture" [src]="decorator.profilePicture" alt="Profile Picture"
+                    style="width: 150px; border-radius: 50%;" />
+            </div>
+
+            <!-- User Details -->
+            <div class="profile-details">
+                <p><strong>First Name:</strong> {{ decorator.firstName }}</p>
+                <p><strong>Last Name:</strong> {{ decorator.lastName }}</p>
+                <p><strong>Email:</strong> {{ decorator.email }}</p>
+                <p><strong>Phone:</strong> {{ decorator.phone }}</p>
+                <p><strong>Address:</strong> {{ decorator.address }}</p>
+            </div>
+
+            <!-- Edit Profile Button -->
+            <button (click)="enableEditing()">Edit Profile</button>
+
+            <!-- Editable Fields when editing is enabled -->
+            <div *ngIf="isEditing" class="bound-input-box">
+                <input type="text" [(ngModel)]="decorator.firstName" placeholder="First Name" /> <br>
+                <input type="text" [(ngModel)]="decorator.lastName" placeholder="Last Name" />
+                <input type="email" [(ngModel)]="decorator.email" placeholder="Email" />
+                <input type="tel" [(ngModel)]="decorator.phone" placeholder="Phone" />
+                <input type="text" [(ngModel)]="decorator.address" placeholder="Address" />
+                <input type="file" style="width: 300px;" (change)="onFileSelected($event)" /> <br>
+                <span class="err">{{message}}</span> <br>
+                <button (click)="updateUser(decorator)">Save Changes</button>
+            </div>
+        </div>
+
+        <div *ngIf="selectedMenu === 'appointments'">
+            <h2>Appointments</h2>
+            <!-- Appointments content will go here -->
+        </div>
+
+        <div *ngIf="selectedMenu === 'maintenance'">
+            <h2>Maintenance</h2>
+            <!-- Maintenance content will go here -->
+        </div>
+
+        <div *ngIf="selectedMenu === 'statistics'">
+            <h2>Statistics</h2>
+            <!-- Statistics content will go here -->
+        </div>
+    </div>
+</div>

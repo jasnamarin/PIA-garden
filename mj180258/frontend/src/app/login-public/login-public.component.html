@@ -1,0 +1,17 @@
+<header>
+    <h1>Your Imagination – Your Garden</h1>
+</header>
+
+<div class="flexbox-container">
+    <h2>Login</h2>
+    <form (submit)="login($event)">
+        <!-- Bind username and password inputs using ngModel -->
+        <input type="text" name="username" [(ngModel)]="username" placeholder="username" required /><br />
+
+        <input type="password" name="password" [(ngModel)]="password" placeholder="password" required /><br />
+
+        <!-- Use form submission instead of button click -->
+        <button type="submit">Login</button><br />
+        <span class="err">{{ error }}</span>
+    </form><br />
+</div>

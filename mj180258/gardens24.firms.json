@@ -1,0 +1,76 @@
+[{
+  "_id": {
+    "$oid": "66f046318dc0dc2b3c1d8cdf"
+  },
+  "name": "Elegant Landscapes",
+  "phone": "+381 11 2345678",
+  "address": "Knez Mihailova 12, Belgrade",
+  "services": [
+    {
+      "serviceName": "Landscaping",
+      "price": 500,
+      "_id": {
+        "$oid": "66f046318dc0dc2b3c1d8ce0"
+      }
+    },
+    {
+      "serviceName": "Pool Installation",
+      "price": 1500,
+      "_id": {
+        "$oid": "66f046318dc0dc2b3c1d8ce1"
+      }
+    }
+  ],
+  "holidayPeriod": "2024-07-01 to 2024-07-14",
+  "decorators": [
+    {
+      "$oid": "66f046328dc0dc2b3c1d8ce3"
+    },
+    {
+      "$oid": "66f046328dc0dc2b3c1d8ce5"
+    },
+    {
+      "$oid": "66f047b4a3d69ef217fb5ea6"
+    }
+  ],
+  "__v": 2,
+  "location": "44.817,20.456"
+},
+{
+  "_id": {
+    "$oid": "66f04c4a6e622dd768888c5f"
+  },
+  "name": "Modern Gardens",
+  "phone": "+381 11 2225566",
+  "address": "Bulevar Kralja Aleksandra 123, Belgrade",
+  "services": [
+    {
+      "serviceName": "Fountain Setup",
+      "price": 1000,
+      "_id": {
+        "$oid": "66f04c4a6e622dd768888c60"
+      }
+    },
+    {
+      "serviceName": "Garden Design",
+      "price": 700,
+      "_id": {
+        "$oid": "66f04c4a6e622dd768888c61"
+      }
+    }
+  ],
+  "location": "44.817, 20.456",
+  "holidayPeriod": "2024-07-01 to 2024-07-14",
+  "decorators": [
+    {
+      "$oid": "66f03c6b5a48c516ba2624af"
+    },
+    {
+      "$oid": "66f03c6b5a48c516ba2624b0"
+    },
+    {
+      "$oid": "66f04fe2c3f19a3dfa47591b"
+    }
+  ],
+  "__v": 2
+}]
